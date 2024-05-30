@@ -1,10 +1,10 @@
-ARG BASE_TAG=main-base
+ARG BASE_TAG=main-base-py3.11-cu121-2.1.2
 FROM winglian/axolotl-base:$BASE_TAG
 
 ARG TORCH_CUDA_ARCH_LIST="7.0 7.5 8.0 8.6+PTX"
 ARG AXOLOTL_EXTRAS=""
 ARG AXOLOTL_ARGS=""
-ARG CUDA="118"
+ARG CUDA="121"
 ENV BNB_CUDA_VERSION=$CUDA
 ARG PYTORCH_VERSION="2.1.2"
 
@@ -22,9 +22,9 @@ WORKDIR /workspace/axolotl
 # If AXOLOTL_EXTRAS is set, append it in brackets
 RUN pip install causal_conv1d
 RUN if [ "$AXOLOTL_EXTRAS" != "" ] ; then \
-        pip install -e .[deepspeed,flash-attn,mamba-ssm,galore,$AXOLOTL_EXTRAS] $AXOLOTL_ARGS; \
+    pip install -e .[deepspeed,flash-attn,mamba-ssm,galore,$AXOLOTL_EXTRAS] $AXOLOTL_ARGS; \
     else \
-        pip install -e .[deepspeed,flash-attn,mamba-ssm,galore] $AXOLOTL_ARGS; \
+    pip install -e .[deepspeed,flash-attn,mamba-ssm,galore] $AXOLOTL_ARGS; \
     fi
 
 # So we can test the Docker image
