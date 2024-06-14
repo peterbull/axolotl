@@ -27,7 +27,7 @@ lora_dropout: 0.05
 lora_target_linear: true
 lora_fan_in_fan_out:
 
-wandb_project: peterbull/axolotl-june
+wandb_project: axolotl-june
 wandb_entity:
 wandb_watch:
 wandb_name:
